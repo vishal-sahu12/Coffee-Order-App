@@ -1,0 +1,2 @@
+rootProject.name = "dukaan"
+include ':app'
