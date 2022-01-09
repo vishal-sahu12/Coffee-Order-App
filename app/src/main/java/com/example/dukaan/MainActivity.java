@@ -1,12 +1,15 @@
 package com.example.dukaan;
 
 
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import java.text.NumberFormat;
 
@@ -17,7 +20,7 @@ import java.text.NumberFormat;
 public class MainActivity extends AppCompatActivity {
 
 
-    public static int numberOfCoffees=0;
+    public static int numberOfCoffees=1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,31 +48,72 @@ public class MainActivity extends AppCompatActivity {
       //** display(numberOfCoffees);
        // displayPrice(numberOfCoffees*5);
     }
+    /*
+    * This Method will execute when + button in clicked
+    * */
     public void increment(View view){
+        /*if(numberOfCoffees>=1 && numberOfCoffees<99){
         numberOfCoffees=numberOfCoffees+1;
+        display(numberOfCoffees);}
+        else{
+            Toast toast = Toast.makeText(getApplicationContext(), "You Cannot Have More than 99 Coffee", Toast.LENGTH_SHORT);
+            toast.show();
+            return;
+        }*/
+        // Alternate Way For Increment
+        if (numberOfCoffees ==99)
+        {
+            // Show Toast message
+            Toast.makeText(this,"You Cannot Have More than 99 Coffee",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        numberOfCoffees += 1;
         display(numberOfCoffees);
+    }
+    //This Method will execute when - button in clicked
+    public void decrement(View view){
+       /* if(numberOfCoffees>1 && numberOfCoffees<=99){
+        numberOfCoffees=numberOfCoffees-1;
+        display(numberOfCoffees);}
+        else{
+            Toast toast = Toast.makeText(getApplicationContext(), "You Cannot Have Less than 1 Coffee", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+        */
+
+        // Alternate Way For Decrement
+        if (numberOfCoffees == 1){
+            //show toast message
+            Toast.makeText(this,"You Cannot Have Less than 1 Coffee", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        numberOfCoffees-=1;
+        display(numberOfCoffees);
+
+
     }
     /*
     * @param name = User Input Name
     * @whippedCream = return True/False for whippedCream CheckBox
     * */
-    private String createOrderSummary(boolean whippedCream,boolean chocalte,String names)
-    {
-        String Summary ="Name :" + names;
-        Summary += "\nWhipp Cream :- " + whippedCream;
-        Summary += "\nChocolate :- " + chocalte;
-        Summary = Summary + "\nQuantity : "+ numberOfCoffees;
-        Summary +="\nTotal :" + calculatePrice(whippedCream,chocalte);
-        Summary+= "\nThank You";
-        return Summary;
-
+    private String createOrderSummary(boolean whippedCream,boolean chocalte,String names) {
+        if (numberOfCoffees >= 1 && numberOfCoffees <=99) {
+            String Summary = "Name :" + names;
+            Summary += "\nWhipp Cream :- " + whippedCream;
+            Summary += "\nChocolate :- " + chocalte;
+            Summary = Summary + "\nQuantity : " + numberOfCoffees;
+            Summary += "\nTotal :" + calculatePrice(whippedCream, chocalte);
+            Summary += "\nThank You";
+            return Summary;
+        } else {
+            Toast toast = Toast.makeText(getApplicationContext(), "Your Order Is Not Correct", Toast.LENGTH_SHORT);
+            toast.show();
+            return "Your Order Is Not Correct\nPlease Review Your Order";
+        }
     }
 
-    public void decrement(View view){
-        numberOfCoffees=numberOfCoffees-1;
-        display(numberOfCoffees);
 
-    }
+
 
     /*
     * It is A method used for calculate the Total Price Of Coffess
