@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">दुकान</string>
+    <string name="hello_world">" नमस्ते दुनिया"</string>
+    <string name="thank_you">धन्यवाद</string>
+    <string name="toppings">" टॉपिंग"</string>
+    <string name="order_summary">आदेश सारांश</string>
+    <string name="whipped_cream">मलाई</string>
+    <string name="chocolate">" चॉकलेट"</string>
+    <string name="order">ऑर्डर</string>
+    <string name="order_summaries">ऑर्डर सारांश</string>
+    <string name="quantity">मात्रा</string>
+    <string name="name">आपका नाम</string>
+</resources>

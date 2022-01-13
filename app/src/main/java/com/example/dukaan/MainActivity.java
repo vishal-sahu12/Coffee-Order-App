@@ -1,7 +1,7 @@
 package com.example.dukaan;
 
-
-
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -40,14 +40,23 @@ public class MainActivity extends AppCompatActivity {
         boolean hasChocolate = chocolateBox.isChecked();
         EditText nameText = (EditText) findViewById(R.id.name_text_view);
         String name = nameText.getText().toString();
+        String order = createOrderSummary(hasWhippedCream,hasChocolate,name);
+        displayMessage(order);
 
-
-        displayMessage(createOrderSummary(hasWhippedCream,hasChocolate,name));
+//        // intent For App
+//        Intent intent = new Intent(Intent.ACTION_SENDTO);
+//        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+//        intent.putExtra(Intent.EXTRA_SUBJECT,"Coffee Ordering App" );
+//        intent.putExtra(Intent.EXTRA_EMAIL, "sahuvishal2712da@gmail.com");
+//        intent.putExtra(Intent.EXTRA_TEXT,order);
+//        if (intent.resolveActivity(getPackageManager()) != null) {
+//            startActivity(intent);
+        }
 
 
       //** display(numberOfCoffees);
        // displayPrice(numberOfCoffees*5);
-    }
+
     /*
     * This Method will execute when + button in clicked
     * */
@@ -98,12 +107,12 @@ public class MainActivity extends AppCompatActivity {
     * */
     private String createOrderSummary(boolean whippedCream,boolean chocalte,String names) {
         if (numberOfCoffees >= 1 && numberOfCoffees <=99) {
-            String Summary = "Name :" + names;
+            String Summary = getString(R.string.order_summary,names);
             Summary += "\nWhipp Cream :- " + whippedCream;
             Summary += "\nChocolate :- " + chocalte;
             Summary = Summary + "\nQuantity : " + numberOfCoffees;
             Summary += "\nTotal :" + calculatePrice(whippedCream, chocalte);
-            Summary += "\nThank You";
+            Summary += "\n" + getString(R.string.thank_you);
             return Summary;
         } else {
             Toast toast = Toast.makeText(getApplicationContext(), "Your Order Is Not Correct", Toast.LENGTH_SHORT);
