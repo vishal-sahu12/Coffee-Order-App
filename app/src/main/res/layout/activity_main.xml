@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/white"
         android:textSize="26sp"
-        android:background="#F4F7EB"
+        android:background="#080808"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:hint="@string/name"/>
